@@ -189,6 +189,16 @@ Use the following key/value pair to configure a homepage shortcut:
 |-------------------------------------------------------------------|-------------|
 |    com.microsoft.intune.mam.managedbrowser.homepage   |    Specify a valid URL. Incorrect URLs are blocked as a security measure.<br>**Example:** <`https://www.bing.com`>
 
+
+## Configure multiple top site shortcuts for new tab pages in Microsoft Edge 
+Similarly to configuring a homepage shortcut, you can configure multiple top site shortcuts on new tab pages in Microsoft Edge. The user can't edit or delete these shortcuts in a managed context.
+
+|    Key    |    Value    |
+|-------------------------------------------------------------------|-------------|
+|    com.microsoft.intune.mam.managedbrowser.managedTopSites   |    Specify set of value URLs. Each top site shortcut consists of a title and URL. Separate the title and URL wiht the '|' character. For example: <br> 'GitHub | https://github.com/||LinkedIn|https://www.linkedin.com' 
+
+
+
 ## Configure your organization's logo and brand color for new tab pages in Microsoft Edge
 
 These settings allow you to customize the New Tab Page for Microsoft Edge to display your organization's logo and brand color as the page background.
@@ -211,7 +221,7 @@ You can configure the New Tab Page experience within Microsoft Edge mobile to di
 
 |    Key    |    Value    |
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-|    'com.microsoft.intune.SohwIndustryNews'    |    **True** will show INdustry News on the Microsoft Edge mobile New Tab Page.<p>**False** (default) will hide Industry News from the New Tab Page.    |
+|    'com.microsoft.intune.ShowIndustryNews'    |    **True** will show Industry News on the Microsoft Edge mobile New Tab Page.<p>**False** (default) will hide Industry News from the New Tab Page.    |
 
 ## Configure managed bookmarks for Microsoft Edge
 
@@ -237,6 +247,7 @@ By default, your users are shown the MyApps sites that are configured to them wi
 |    Key    |    Value    |
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
 |    com.microsoft.intune.mam.managedbrowser.MyApps    |    **True** shows MyApps within the Microsoft Edge bookmarks.<p>**False** hides MyApps within Microsoft Edge.    |
+
 
 ## Specify allowed or blocked sites list for Microsoft Edge
 You can use app configuration to define which sites your users can access when using their work profile. If you use an allow list, your users are only able to access the sites you’ve explicitly listed. If you use a blocked list, your users can access all sites except for those you’ve explicitly blocked. You should only impose either an allowed or a blocked list, not both. If you impose both, the allowed list is honored.  
@@ -299,6 +310,19 @@ You can configure if restricted links should open directly in InPrivate browsing
 |    Key    |    Value    |
 |----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    `com.microsoft.intune.mam.managedbrowser.AllowTransitionOnBlock`    |    **True** allows Microsoft Edge to transition users to their   personal context to open blocked sites.<p>**Block** prevents Microsoft Edge from transitioning users. Users are simply shown a message stating that the site they are trying to   access is blocked.    |
+
+
+## Disable InPrivate and Microsoft Accounts (MSA) to restrict personal browsing
+Some customers in highly-regulated industries who are using a per-app VPN with Microsoft Edge may want to scrope users to browsing within their AAD context only. You can use the following app config settings for your MDM devices to achieve this. This functionality is not available for MAM-enrolled devices. 
+
+|    Key    |    Value    |
+|-------------------------------------------------------------------|-------------------------------------------------------|
+|     'com.microsoft.intune.mam.managedbrowser.disabledFeatures'    |    **inprivate** will disable InPrivate browser. <br> **msa** will disable users' ability to add personal MSA accounts to Microsoft Edge.<br> To disable both InPrivate and MSA accounts, use 'inprivate| msa'    |  
+
+
+You can also restrict users from browsing with Microsoft Edge mobile on MDM devices **only** when the user is signed in with their AAD work account. You can learn more about the keys to configure org-account-only mode for Microsoft Edge here:
+- [Android org-account-only](https://docs.microsoft.com/intune/apps/app-configuration-policies-use-android#allow-only-configured-organization-accounts-in-multi-identity-apps)
+- [iOS org-accounts-only](https://docs.microsoft.com/intune/apps/app-configuration-policies-use-ios#allow-only-configured-organization-accounts-in-multi-identity-apps)
 
 
 ## Use Microsoft Edge on iOS to access managed app logs 
